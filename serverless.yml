@@ -1,0 +1,6 @@
+service: restaurant-service
+
+provider:
+  name: aws
+  runtime: go1.x
+  region: ap-southeast-1
