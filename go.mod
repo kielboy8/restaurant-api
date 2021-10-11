@@ -4,12 +4,11 @@ go 1.17
 
 require (
 	github.com/aws/aws-lambda-go v1.27.0
-	github.com/golang-migrate/migrate/v4 v4.15.0
+	github.com/aws/aws-sdk-go v1.17.7
 )
 
 require (
-	github.com/hashicorp/errwrap v1.0.0 // indirect
-	github.com/hashicorp/go-multierror v1.1.0 // indirect
-	github.com/lib/pq v1.10.0 // indirect
-	go.uber.org/atomic v1.6.0 // indirect
+	github.com/jmespath/go-jmespath v0.4.0 // indirect
+	golang.org/x/net v0.0.0-20210520170846-37e1c6afe023 // indirect
+	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
