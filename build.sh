@@ -1,5 +1,13 @@
 #!/bin/bash
 
-set -ex
+set -e
+set -v
 
-go build -o bin/service service/*.go
+
+go get ./...
+
+CWD=`pwd`
+
+cd $CWD/service && ./build.sh
+
+cd $CWD/worker && ./build.sh

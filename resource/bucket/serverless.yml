@@ -1,0 +1,35 @@
+app: restaurant-api
+service: restaurant-resources
+
+provider:
+  name: aws
+  runtime: go1.x
+  region: ap-southeast-1
+  deploymentBucket:
+    name: kielboy8.artifacts
+    maxPreviousDeploymentArtifacts: 10
+    blockPublicAccess: true
+  deploymentPrefix: serverless
+
+resources:
+  Resources:
+    restaurantBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: kielboy8.restaurants
+        VersioningConfiguration:
+          Status: Enabled
+    restaurantBucketNameParam:
+      Type: AWS::SSM::Parameter
+      Properties:
+        Description: restaurantBucketNameParam
+        Name: /restaurant/bucketName
+        Type: String
+        Value: !Ref restaurantBucket
+    restaurantBucketArnParam:
+      Type: AWS::SSM::Parameter
+      Properties:
+        Description: restaurantBucketArnParam
+        Name: /restaurant/bucketArn
+        Type: String
+        Value: !GetAtt restaurantBucket.Arn

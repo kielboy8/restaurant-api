@@ -1,0 +1,42 @@
+app: restaurant-api
+service: restaurant-workers
+
+provider:
+  name: aws
+  runtime: go1.x
+  region: ap-southeast-1
+  deploymentBucket:
+    name: kielboy8.artifacts
+    maxPreviousDeploymentArtifacts: 10
+    blockPublicAccess: true
+  deploymentPrefix: serverless
+  iam:
+    role:
+      statements:
+        - Effect: "Allow"
+          Action:
+            - "s3:*"
+          Resource:
+            - ${ssm:/restaurant/bucketArn}
+
+functions:
+  etlWorker:
+    package:
+      include:
+        - bin/etlWorker
+    handler: bin/etlWorker
+    events:
+      - s3:
+          bucket: ${ssm:/restaurant/bucketName}
+          event: s3:ObjectCreated:*
+          rules:
+            - prefix: restaurant/
+            - suffix: .json
+          existing: true
+      - s3:
+          bucket: ${ssm:/restaurant/bucketName}
+          event: s3:ObjectCreated:*
+          rules:
+            - prefix: users/
+            - suffix: .json
+          existing: true

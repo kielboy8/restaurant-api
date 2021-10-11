@@ -1,4 +1,10 @@
+#!/bin/bash
+
 set +e
 set -v
 
-sls deploy --verbose
+CWD=$PWD
+
+cd $CWD/resource/bucket && sls deploy --verbose || error=true
+cd $CWD/service && ./deploy.sh
+cd $CWD/worker && ./deploy.sh
