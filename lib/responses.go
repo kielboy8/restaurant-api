@@ -4,23 +4,11 @@ import (
 	"github.com/aws/aws-lambda-go/events"
 )
 
-//OkResponse is used to be CORS friendly response to the front-end
-func OkResponse(body string) events.APIGatewayProxyResponse {
+func Response200(body string) events.APIGatewayProxyResponse {
 	return events.APIGatewayProxyResponse{Body: body, StatusCode: 200, Headers: corsHeaders()}
 }
 
-//EmptyOkResponse is used to be CORS friendly response to the front-end
-func EmptyOkResponse() events.APIGatewayProxyResponse {
-	return events.APIGatewayProxyResponse{Body: "", StatusCode: 200, Headers: corsHeaders()}
-}
-
-//CreatedResponse is setup for custom response that is CORS friendly.
-func CreatedResponse() events.APIGatewayProxyResponse {
-	return events.APIGatewayProxyResponse{Body: "", StatusCode: 201, Headers: corsHeaders()}
-}
-
-//NotFoundResponse is setup for responses of type not found.
-func NotFoundResponse() events.APIGatewayProxyResponse {
+func Response404() events.APIGatewayProxyResponse {
 	return events.APIGatewayProxyResponse{Body: "", StatusCode: 404, Headers: corsHeaders()}
 }
 

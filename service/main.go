@@ -11,7 +11,7 @@ import (
 
 func handler(ctx context.Context, request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 
-	return lib.NotFoundResponse(), nil
+	return lib.Response200("API Test"), nil
 }
 
 func main() {
