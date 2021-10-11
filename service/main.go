@@ -5,11 +5,13 @@ import (
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
+
+	"github.com/kielboy8/restaurant-api/lib"
 )
 
 func handler(ctx context.Context, request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 
-	return events.APIGatewayProxyResponse{Body: "", StatusCode: 404, Headers: corsHeaders()}, nil
+	return lib.NotFoundResponse(), nil
 }
 
 func main() {

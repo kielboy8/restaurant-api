@@ -1,4 +1,4 @@
-module restaurant-api
+module github.com/kielboy8/restaurant-api
 
 go 1.17
 
